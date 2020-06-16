@@ -38,6 +38,7 @@ def signup():
         sql = "INSERT INTO customer(email, customer_name, mobile_no, address, password) VALUES('{}', '{}', '{}', '{}', '{}')".format(email, name, mobileNo, address, password)
         cursor.execute(sql)
         connection.commit()
+        
     except Exception as e:
         print(e)
         main()

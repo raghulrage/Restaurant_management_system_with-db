@@ -87,7 +87,7 @@ CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `total` varchar(10) DEFAULT NULL,
-  `date` varchar(50) NOT NULL DEFAULT current_timestamp()
+  `date` varchar(50) NOT NULL 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

@@ -2,8 +2,8 @@ import pymysql
 try:
     connection = pymysql.connect(
         host = 'localhost',
-        user = 'root',
-        password = '',
+        user = 'raghul',
+        password = 'dhanya295939',
         database = 'restaurant_billing_system')
 
     cursor = connection.cursor()

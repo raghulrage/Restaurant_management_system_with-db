@@ -1,5 +1,6 @@
-from menu import *
 import json
+import hashlib
+from menu import *
 from config import *
 
 print('#'*10+' WELCOME '+'#'*10)
@@ -19,6 +20,10 @@ def checkUser(email):
     except Exception:
         print('\nError occured...\n')
         main()
+
+def encryptPassword(password):
+    en = hashlib.sha256(password.encode()).hexdigest()
+    return en
         
 def signup():
         
@@ -31,11 +36,13 @@ def signup():
     mobileNo = input('\nEnter Mobile Number: ')
 
     password = input('\nEnter password: ')
+
+    encryptPass = encryptPassword(password)
     
     address = input('\nEnter Address: ')
 
     try:
-        sql = "INSERT INTO customer(email, customer_name, mobile_no, address, password) VALUES('{}', '{}', '{}', '{}', '{}')".format(email, name, mobileNo, address, password)
+        sql = "INSERT INTO customer(email, customer_name, mobile_no, address, password) VALUES('{}', '{}', '{}', '{}', '{}')".format(email, name, mobileNo, address, encryptPass)
         cursor.execute(sql)
         connection.commit()
         
@@ -66,7 +73,8 @@ def validatePassword(password,email):
     try:
         count = 5
         while True:
-            sql = "SELECT password FROM customer WHERE password = '{}' AND email = '{}'".format(password, email)
+            encryptPass = encryptPassword(password)
+            sql = "SELECT password FROM customer WHERE password = '{}' AND email = '{}'".format(encryptPass, email)
             rows = cursor.execute(sql)
 
             if rows > 0:

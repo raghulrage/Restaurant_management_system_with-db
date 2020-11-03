@@ -3,7 +3,7 @@ try:
     connection = pymysql.connect(
         host = 'localhost',
         user = 'raghul',
-        password = 'dhanya295939',
+        password = '',
         database = 'restaurant_billing_system')
 
     cursor = connection.cursor()
